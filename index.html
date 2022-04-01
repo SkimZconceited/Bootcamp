@@ -6,15 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootcamp</title>
 </head>
-<body>
-    <header></header>
-    <div class="form">
-
-        <form action="">
-            
-        </form>
-    </div>
-
+    <body>
+    <div class="ui container">
+        <div class="main-container">
+            <div class="left-container">
+                <h2 id="show-counter"></h2>
+                <h1 id="show-data">What did you like about the boot camp?
+                </h1>
+            </div>
     
+            <div class="right-container">
+                1. The technologies used <input type="checkbox" id="check1" name="tech" value="The technologies used"><br>
+                2. The skills acquired <input type="checkbox" id="check2" name="skill" value="The skills acquired"><br>
+                3. The food and drinks <input type="checkbox" id="check3" name="food" value = "The food and drinks"><br>
+                4. The accommodation <input type="checkbox" id="check4" name="sleep" value="The accommodation"><br>
+                5. The trainers <input type="checkbox" id="check5" name="trainers" value="The trainers"><br>
+                6. Your fellow students <input type="checkbox" id="check"  name="student"value="Your fellow students"><br>
+                7. Nothing <input type="checkbox" id="check7" name="nil" value="Nothing"><br>
+            </div>
+        </div>
+        <br>
+        <div class="navigation-controllers">
+            <button class="ui icon button" value="Submit">
+                Submit Feedback
+            </button>
+
+            <button onclick="getValue()">View Feedback</button>
+        </div>
+    </div> 
+    <p id="demo"></p>
+    <script>
+        function getValue() {
+             var ele=[]
+              var tech = document.getElementById("check1")
+              if(tech.checked){
+                    ele.push(tech.value);
+             }
+             var sleep = document.getElementById("check2")
+              if(sleep.checked){
+                    ele.push(sleep.value);
+             }
+             var home = document.getElementById("check3")
+              if(home.checked){
+                    ele.push(home.value);
+             }
+             var bike = document.getElementById("check4")
+              if(bike.checked){
+                    ele.push(bike.value);
+             }
+             var car = document.getElementById("check5")
+              if(car.checked){
+                    ele.push(car.value);
+             }
+             var home = document.getElementById("check6")
+              if(home.checked){
+                    ele.push(home.value);
+             }
+             var bike = document.getElementById("check7")
+              if(bike.checked){
+                    ele.push(bike.value);
+             }
+               if(ele.length>0){
+                document.getElementById("demo").innerHTML = ele;
+               }
+               else{
+               document.getElementById("demo").innerHTML = "You Dont have any thing";
+               }
+             }
+             
+        </script>
+
 </body>
 </html>
