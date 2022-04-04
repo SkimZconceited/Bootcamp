@@ -1,165 +1,42 @@
-$(document).ready(function() {
-    var question = 0;
-    var showData = $('#show-data');
-    var showCounter = $('#show-counter');
-    var Answers = {};
-    var rightArrow = $(".right-arrow");
-    var leftArrow = $(".left-arrow");
-    var reviewButton = $("#review-data");
+function checkCheckbox() { 
+    var l1 = document.getElementById("check1");  
+    var l2 = document.getElementById("check2");  
+    var l3 = document.getElementById("check3");  
+    var l4 = document.getElementById("check4"); 
+    var l5 = document.getElementById("check5");  
+    var l6 = document.getElementById("check6");  
+    var l7 = document.getElementById("check7");  
 
-    // GET function to read the JSON file
-    function getData() {
-        return $.ajax({
-            url: '../data/example2.json',
-            type: 'GET'
-        });
+
+    var res="Your selection: ";   
+
+    if (l1.checked == true){  
+    var pl1 = document.getElementById("check1").value;  
+    res = res + " " +'1.' + pl1 +',';  
     }
-
-    // Function to insert the counter
-    function insertCounter(data) {
-            var length = data.items.length;
-            showCounter.append(question + 1 + " / " + length);
+    if (l2.checked == true){  
+    var pl2 = document.getElementById("check2").value;  
+    res = res + " "  +'2.' + pl2 + ',';   
+    }  
+    if (l3.checked == true){   
+    var pl3 = document.getElementById("check3").value;  
+    res = res + " " +'3.' + pl3 + ',';   
+    }  
+    if (l4.checked == true){  
+    var pl4 = document.getElementById("check4").value;  
+    res = res+ " " +'4.' + pl4 + ',';   
+    }  
+    if (l5.checked == true){  
+    var pl5 = document.getElementById("check5").value;  
+    res = res+ " " + '5.' + pl5 + ',';   
+    }  
+    if (l6.checked == true){  
+    var pl6 = document.getElementById("check6").value;  
+    res =  res+ " "  + '6.'+ pl6 + ',';   
+    } 
+    if (l7.checked == true){  
+    var pl7 = document.getElementById("check7").value;  
+    res = res+ " " +'7.' + pl7 + '.';   
+    } 
+    alert(res); 
     }
-
-    function getLastQuestion(data, questionNumber) {
-
-            var length = data.items.length;
-            var number = questionNumber+1;
-            console.log("element " + number + " of: " + length);
-            if (number == length) {
-                console.log("finito!");
-                rightArrow.css("display", "none");
-                reviewButton.css("display", "inline-block");
-                reviewButton.prop("disabled", false);
-            }
-    }
-
-    // Callback to insert the counter
-    getData().done(insertCounter);
-
-
-    // Disable the back button if it's the first question
-if(question == 0) {
-$('#prev-data').prop('disabled', true);
-}
-
-    // To be sure that just 1 answer is selected
-$(".right-container > button").click(function() {
-    $(".right-container").find(".blue").removeClass("blue");
-
-    $(this).toggleClass("blue");
-
-    $(rightArrow).removeAttr("disabled");
-    $(rightArrow).addClass("blue");
-    $(reviewButton).addClass("blue");
-
-});
-
-
-    // Manage click events on next button
-    $('#next-data').click(function() {
-        question++;
-        $.getJSON('../data/example2.json', function(data) {
-            var items = data.items[question].paragraph;
-            var length = data.items.length;
-
-            showData.empty();
-            showData.append(items);
-
-            showCounter.empty();
-            showCounter.append(question + 1 + " / " + length);
-
-            $(".right-container").find(".blue").removeClass("blue");
-            $(reviewButton).removeClass("blue");
-
-            $('#next-data').removeClass("blue");
-            $('#next-data').prop('disabled', true);
-
-  if (hasAnswer(this, question, Answers) == true) {
-    checkAnswer(this, question, Answers);
-    $('#next-data').prop('disabled', false);
-  }
-
-  if(question == 0) {
-    $('#prev-data').prop('disabled', true);
-  } else {
-    $('#prev-data').prop('disabled', false);
-  }
-
-            // Checking if it is the last item
-            getData().done(getLastQuestion(data,question));
-
-        });
-    });
-
-    // Manage click events on back button
-    $('#prev-data').click(function() {
-        question--;
-        $.getJSON('../data/example2.json', function(data) {
-            var items = data.items[question].paragraph;
-            var length = data.items.length;
-
-            showData.empty();
-            showData.append(items);
-
-            showCounter.empty();
-            showCounter.append(question + 1 + " / " + length);
-
-            $(".right-container").find(".blue").removeClass("blue");
-            $('#prev-data').removeClass("blue");
-
-  if (hasAnswer(this, question, Answers) == true) {
-    checkAnswer(this, question, Answers);
-    $('#next-data').prop('disabled', false);
-  }
-
-  if(question == 0) {
-    $('#prev-data').prop('disabled', true);
-  } else {
-    $('#prev-data').prop('disabled', false);
-                reviewButton.css("display", "none");
-                rightArrow.css("display", "inline-block");
-                rightArrow.removeClass("blue");
-  }
-
-        });
-    });
-
-
-    // Insert the answer in an object
-    $(".survey-button").click(function() {
-        var id = this.id;
-        Answers[question] = id;
-
-        // console.log(Answers);
-    });
-
-    // Function to check if the answer object contains an answer for that question
-function hasAnswer(button, questionNumber, answersObject) {
-if (answersObject.hasOwnProperty(questionNumber)) {
-  return true;
-} else {
-  return false;
-}
-}
-
-    // Function to check which answer was previously selected
-function checkAnswer(button, questionNumber, answersObject) {
-        var id = button.id;
-
-        if (answersObject.hasOwnProperty(questionNumber)) {
-  var checkedButton = answersObject[questionNumber];
-
-            console.log("Question: " + questionNumber + " ==> " + answersObject[questionNumber]);
-            $("#"+checkedButton).addClass("blue");
-
-  return true;
-        } else {
-
-  return false;
-}
-
-
-        // console.log(Answers);
-    }
-});

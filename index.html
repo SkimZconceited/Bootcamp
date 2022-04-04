@@ -7,21 +7,7 @@
     <title>Bootcamp</title>
 
     <link rel="stylesheet" type="text/css" href="survey.css">
-    <script type="text/javascript" src="survey.js">
-</script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-        $('#btnUncheckAll').click(function () {
-        $('input[type=checkbox]').each(
-        function (index, checkbox) {
-        if (index != 0) {
-        checkbox.checked = false;
-        }
-        });
-        });
-        });
-        </script>
+    <script src="survey.js"></script>
 </head>
 <body>
     <div class="ui container">
@@ -32,56 +18,20 @@
             </div>
     
             <div class="right-container">
-                1. The technologies used <input type="checkbox" id="" name="tech" value="The technologies used"><br>
-                2. The skills acquired <input type="checkbox" id="" name="skills" value="The skills acquired"><br>
-                3. The food and drinks <input type="checkbox" id="" name="foods" value="The food and drinks"><br>
-                4. The accommodation <input type="checkbox" id="" name="accommodation" value="The accommodation"><br>
-                5. The trainers <input type="checkbox" id="" name="trainers" value="The trainers"><br>
-                6. Your fellow students <input type="checkbox" id="" name="students" value="Your fellow students"><br>
-                7. Nothing <input type="checkbox" id="check7" name="nil" class="nothing" value="Nothing">
+                1. The technologies used <input type="checkbox" id="check1" name="tech" value="The technologies used"><br>
+                2. The skills acquired <input type="checkbox" id="check2" name="skills" value="The skills acquired"><br>
+                3. The food and drinks <input type="checkbox" id="check3" name="foods" value="The food and drinks"><br>
+                4. The accommodation <input type="checkbox" id="check4" name="accommodation" value="The accommodation"><br>
+                5. The trainers <input type="checkbox" id="check5" name="trainers" value="The trainers"><br>
+                6. Your fellow students <input type="checkbox" id="check6" name="students" value="Your fellow students"><br>
+                7. Nothing <input type="checkbox" id="check7" name="nil"  value="Nothing"><br>
 
-                        </div>
-                    </div>
-                    <br>
-                    <div class="navigation-controllers">
-                        <button class="ui icon button left-arrow" id="prev-data">
-                            <i class="ui icon arrow left"></i>
-                        </button>
-                        <button class="ui icon button right-arrow" disabled id="next-data">
-                            <i class="ui icon arrow right"></i>
-                        </button>
-                        <button class="ui icon button" disabled id="review-data">
-                            Review Data
-                        </button>
-                
-                    </div>
-                </div>
-            </body>
-            </html>
+                        <button onclick="checkCheckbox()">Submit</button> <br>  
+
+                        <h4 style="color:green" id="result"></h3>   
+                            <h4 style="color:red" id="error"></h3>  
             </div>
         </div>
-        <br>
-        <div class="navigation-controllers">
-            <button value="Submit">Submit Review</button>
-        </div>
     </div>
-
-    <table id="content">
-    </table>
 </body>
-<script>
-$( "body" ).on( "change", ".right-container > input[type=checkbox]", function() {
-    if ($(this).hasClass("nothing")) { //Nothing checkbox tick
-        if ($(this).prop("checked")) { //User checked nothing
-            //Other checkboxes are unchecked
-            $(".right-container > input[type=checkbox][name=" + $(this).attr("name") + "]:not(.nothing)").prop("checked", false)
-        }
-    } else { //Other checkbox tick
-        if ($(this).prop("checked")) {//User checked another checkbox
-            //Any checkbox is unchecked
-            $("[name=" + $(this).attr("name") + "].nothing").prop("checked", false);
-        }
-    }
-})
-</script>
 </html>
