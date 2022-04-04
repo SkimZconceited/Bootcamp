@@ -5,76 +5,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootcamp</title>
+
+    <link rel="stylesheet" type="text/css" href="survey.css">
+    <script type="text/javascript" src="survey.js">
+</script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $('#btnUncheckAll').click(function () {
+        $('input[type=checkbox]').each(
+        function (index, checkbox) {
+        if (index != 0) {
+        checkbox.checked = false;
+        }
+        });
+        });
+        });
+        </script>
 </head>
-    <body>
+<body>
     <div class="ui container">
         <div class="main-container">
             <div class="left-container">
                 <h2 id="show-counter"></h2>
-                <h1 id="show-data">What did you like about the boot camp?
-                </h1>
+                <p id="show-data">WHAT DID YOU LIKE ABOUT THE BOOTCAMP?</p>
             </div>
     
             <div class="right-container">
-                1. The technologies used <input type="checkbox" id="check1" name="tech" value="The technologies used"><br>
-                2. The skills acquired <input type="checkbox" id="check2" name="skill" value="The skills acquired"><br>
-                3. The food and drinks <input type="checkbox" id="check3" name="food" value = "The food and drinks"><br>
-                4. The accommodation <input type="checkbox" id="check4" name="sleep" value="The accommodation"><br>
-                5. The trainers <input type="checkbox" id="check5" name="trainers" value="The trainers"><br>
-                6. Your fellow students <input type="checkbox" id="check"  name="student"value="Your fellow students"><br>
-                7. Nothing <input type="checkbox" id="check7" name="nil" value="Nothing"><br>
+                1. The technologies used <input type="checkbox" id="" name="tech" value="The technologies used"><br>
+                2. The skills acquired <input type="checkbox" id="" name="skills" value="The skills acquired"><br>
+                3. The food and drinks <input type="checkbox" id="" name="foods" value="The food and drinks"><br>
+                4. The accommodation <input type="checkbox" id="" name="accommodation" value="The accommodation"><br>
+                5. The trainers <input type="checkbox" id="" name="trainers" value="The trainers"><br>
+                6. Your fellow students <input type="checkbox" id="" name="students" value="Your fellow students"><br>
+                7. Nothing <input type="checkbox" id="check7" name="nil" class="nothing" value="Nothing">
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="navigation-controllers">
+                        <button class="ui icon button left-arrow" id="prev-data">
+                            <i class="ui icon arrow left"></i>
+                        </button>
+                        <button class="ui icon button right-arrow" disabled id="next-data">
+                            <i class="ui icon arrow right"></i>
+                        </button>
+                        <button class="ui icon button" disabled id="review-data">
+                            Review Data
+                        </button>
+                
+                    </div>
+                </div>
+            </body>
+            </html>
             </div>
         </div>
         <br>
         <div class="navigation-controllers">
-            <button class="ui icon button" value="Submit">
-                Submit Feedback
-            </button>
-
-            <button onclick="getValue()">View Feedback</button>
+            <button value="Submit">Submit Review</button>
         </div>
-    </div> 
-    <p id="demo"></p>
-    <script>
-        function getValue() {
-             var ele=[]
-              var tech = document.getElementById("check1")
-              if(tech.checked){
-                    ele.push(tech.value);
-             }
-             var sleep = document.getElementById("check2")
-              if(sleep.checked){
-                    ele.push(sleep.value);
-             }
-             var home = document.getElementById("check3")
-              if(home.checked){
-                    ele.push(home.value);
-             }
-             var bike = document.getElementById("check4")
-              if(bike.checked){
-                    ele.push(bike.value);
-             }
-             var car = document.getElementById("check5")
-              if(car.checked){
-                    ele.push(car.value);
-             }
-             var home = document.getElementById("check6")
-              if(home.checked){
-                    ele.push(home.value);
-             }
-             var bike = document.getElementById("check7")
-              if(bike.checked){
-                    ele.push(bike.value);
-             }
-               if(ele.length>0){
-                document.getElementById("demo").innerHTML = ele;
-               }
-               else{
-               document.getElementById("demo").innerHTML = "You Dont have any thing";
-               }
-             }
-             
-        </script>
+    </div>
 
+    <table id="content">
+    </table>
 </body>
+<script>
+$( "body" ).on( "change", ".right-container > input[type=checkbox]", function() {
+    if ($(this).hasClass("nothing")) { //Nothing checkbox tick
+        if ($(this).prop("checked")) { //User checked nothing
+            //Other checkboxes are unchecked
+            $(".right-container > input[type=checkbox][name=" + $(this).attr("name") + "]:not(.nothing)").prop("checked", false)
+        }
+    } else { //Other checkbox tick
+        if ($(this).prop("checked")) {//User checked another checkbox
+            //Any checkbox is unchecked
+            $("[name=" + $(this).attr("name") + "].nothing").prop("checked", false);
+        }
+    }
+})
+</script>
 </html>
