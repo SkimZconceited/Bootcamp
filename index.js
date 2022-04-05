@@ -4,7 +4,7 @@ const fs = require('fs');
 const app = express();
 const port = 3000;
 const jsonParser = bodyParser.json();
-const fileName = 'students.json';
+const fileName = 'reviews.json';
 
 // Load data from file
 let rawData = fs.readFileSync(fileName);
