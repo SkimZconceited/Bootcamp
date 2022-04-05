@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body >
+ <div class="ui container">
+        <div class="main-container">
+            <div class="left-container">
+                <h2 id="show-counter"></h2>
+                <p id="show-data">WHAT DID YOU LIKE ABOUT THE BOOTCAMP?</p>
+            </div>
+    
+            <div class="right-container" onclick="func2()">
+                1. The technologies used <input type="checkbox" id="check1" name="tech" value="The technologies used"><br>
+                2. The skills acquired <input type="checkbox" id="check2" name="skills" value="The skills acquired"><br>
+                3. The food and drinks <input type="checkbox" id="check3" name="foods" value="The food and drinks"><br>
+                4. The accommodation <input type="checkbox" id="check4" name="accommodation" value="The accommodation"><br>
+                5. The trainers <input type="checkbox" id="check5" name="trainers" value="The trainers"><br>
+                6. Your fellow students <input type="checkbox" id="check6" name="students" value="Your fellow students"><br>
+                7. Nothing <input type="checkbox" id="check7" name="nil"  value="Nothing"><br>
+
+                        <button onclick="checkCheckbox()">Submit</button> <br>  
+
+                        <h4 style="color:green" id="result"></h3>   
+                            <h4 style="color:red" id="error"></h3>  
+            </div>
+        </div>
+    </div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
